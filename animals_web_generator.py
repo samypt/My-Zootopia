@@ -24,18 +24,26 @@ def save_template(file_path, content):
         handle.write(content)
 
 
+def serialize_animal(animal_obj):
+    output = ""
+    output += '<li class="cards__item">'
+    output += f'<div class="card__title">{animal_obj["name"]}</div>\n'
+    output += f'<p class="card__text">'
+    output += '<ul>'
+    output += f"<li><strong>Diet:</strong> {animal_obj['characteristics']['diet']}</li><br/>\n"
+    output += f"<li><strong>Location:</strong> {animal_obj['locations'][0]}</li><br/>\n"
+    if 'type' in animal_obj['characteristics']:
+        output += f"<li><strong>Type:</strong> {animal_obj['characteristics']['type']}</li><br/>\n"
+    output += '</ul>'
+    output += "</p>\n"
+    output += '</li>\n'
+    return output
+
+
 def access_data(data):
     output = ""
-    for animal in data:
-        output += '<li class="cards__item">'
-        output += f'<div class="card__title">{animal["name"]}</div>\n'
-        output += f'<p class="card__text">'
-        output += f"<strong>Diet:</strong> {animal['characteristics']['diet']}<br/>\n"
-        output += f"<strong>Location:</strong> {animal['locations'][0]}<br/>\n"
-        if 'type' in animal['characteristics']:
-            output += f"<strong>Type:</strong> {animal['characteristics']['type']}<br/>\n"
-        output += "</p>\n"
-        output += '</li>\n'
+    for animal_obj in data:
+        output += serialize_animal(animal_obj)
     return output
 
 
