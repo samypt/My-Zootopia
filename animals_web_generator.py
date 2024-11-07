@@ -6,7 +6,7 @@ def load_data(file_path):
     return json.load(handle)
 
 
-def itterate(data):
+def print_data(data):
     for animal in data:
         print('Name: ', animal['name'])
         print('Diet: ',animal['characteristics']['diet'])
@@ -17,4 +17,4 @@ def itterate(data):
 
 
 
-itterate(load_data("animals_data.json"))
+print_data(load_data("animals_data.json"))
